@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
 import { Searchbar } from "react-native-paper";
+import * as Device from "expo-device";
 
 class PlaceSearchBar extends Component {
   constructor(props) {
@@ -33,10 +34,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 15,
+    marginTop: Device.osName === "Android" ? StatusBar.currentHeight + 10 : 15,
   },
   floatOption: {
     position: "absolute",
-    top: 45,
+    top: Device.osName === "Android" ? 10 : 45,
     zIndex: 1,
     width: "90%",
   },

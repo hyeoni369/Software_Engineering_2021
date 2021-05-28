@@ -24,7 +24,7 @@ class Direction extends Component {
         <View style={styles.directionBox}>
           <TextInputBox
             placeholder={"출발지 입력"}
-            value={from.name ? from.name : "내 위치"}
+            value={from.name}
             onFocus={onFromFocus}
           />
           <TextInputBox

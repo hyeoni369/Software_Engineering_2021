@@ -4,17 +4,32 @@ import Map from "../components/Map";
 
 import MapHeader from "../components/MapHeader";
 import PlaceSearchBar from "../components/PlaceSearchBar";
+import Location from "../components/location";
 
 class DirectionScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      from: "",
-      to: "",
+      from: {
+        name: "내 위치",
+      },
+      to: null,
       transportationMode: "bus",
     };
+
+    this._getLocationAsync();
   }
+
+  _getLocationAsync = async () => {
+    const currentLocation = await Location.getCurrentLocationAsync();
+    this.setState({
+      from: {
+        ...this.state.from,
+        ...currentLocation,
+      },
+    });
+  };
 
   setFrom(from) {
     this.setState({ from });
@@ -50,7 +65,7 @@ class DirectionScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.from || this.state.to ? (
+        {this.state.from?.name !== "내 위치" || this.state.to ? (
           <MapHeader
             from={this.state.from}
             to={this.state.to}

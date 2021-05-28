@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
+import * as Device from "expo-device";
 
 import Direction from "./Direction";
 import Transportation from "./Transportation";
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    marginTop: Device.osName === "Android" ? StatusBar.currentHeight : 0,
   },
 });
 
