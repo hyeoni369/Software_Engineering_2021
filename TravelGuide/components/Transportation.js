@@ -8,8 +8,8 @@ class Transportation extends Component {
     super(props);
   }
 
-  icon_size = 30;
-  transportations = ["walk", "bus", "bike", "car"];
+  icon_size = 22;
+  transportations = ["walk", "bus", "bicycle", "car"];
 
   render() {
     const { transportationMode, onChangeTransportationMode } = this.props;
@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     width: "100%",
-    marginVertical: 3,
+    marginVertical: 5,
+    marginBottom: 8,
   },
 });
 

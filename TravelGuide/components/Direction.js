@@ -1,8 +1,8 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { IconButton } from "react-native-paper";
 
-import TextInputBox from "./TextInputBox";
+import PlaceTextBox from "./PlaceTextBox";
 
 class Direction extends Component {
   constructor(props) {
@@ -10,27 +10,27 @@ class Direction extends Component {
   }
 
   render() {
-    const { from, to, swapFromTo, onFromFocus, onToFocus } = this.props;
+    const { from, to, swapFromTo, onFromPress, onToPress } = this.props;
 
     return (
       <View style={styles.container}>
-        <View style={styles.swapButton}>
-          <IconButton
-            icon={"compare-vertical"}
-            size={40}
-            onPress={swapFromTo}
-          ></IconButton>
-        </View>
+        <Ionicons
+          name={"git-compare"}
+          size={30}
+          color={"#0F0F0F"}
+          onPress={swapFromTo}
+          style={styles.swapButton}
+        ></Ionicons>
         <View style={styles.directionBox}>
-          <TextInputBox
-            placeholder={"출발지 입력"}
+          <PlaceTextBox
+            icon={"location"}
             value={from.name}
-            onFocus={onFromFocus}
+            onPress={onFromPress}
           />
-          <TextInputBox
-            placeholder={"도착지 입력"}
+          <PlaceTextBox
+            icon={"navigate-circle"}
             value={to.name}
-            onFocus={onToFocus}
+            onPress={onToPress}
           />
         </View>
       </View>
@@ -47,14 +47,10 @@ const styles = StyleSheet.create({
     paddingRight: 5,
   },
   swapButton: {
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 8,
-    width: "10%",
+    marginRight: 3,
   },
   directionBox: {
-    width: "85%",
+    width: "87%",
   },
 });
 

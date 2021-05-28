@@ -3,8 +3,8 @@ import { View, StyleSheet } from "react-native";
 import Map from "../components/Map";
 
 import MapHeader from "../components/MapHeader";
-import PlaceSearchBar from "../components/PlaceSearchBar";
 import Location from "../components/location";
+import PlaceSearchBox from "../components/PlaceSearchBox";
 
 class DirectionScreen extends Component {
   constructor(props) {
@@ -39,13 +39,13 @@ class DirectionScreen extends Component {
     this.setState({ to });
   }
 
-  onFromFocus() {
+  onFromPress() {
     this.props.navigation.navigate("PlaceSearch", {
       setPlace: this.setFrom.bind(this),
     });
   }
 
-  onToFocus() {
+  onToPress() {
     this.props.navigation.navigate("PlaceSearch", {
       setPlace: this.setTo.bind(this),
     });
@@ -70,15 +70,15 @@ class DirectionScreen extends Component {
             from={this.state.from}
             to={this.state.to}
             transportationMode={this.state.transportationMode}
-            onFromFocus={this.onFromFocus.bind(this)}
-            onToFocus={this.onToFocus.bind(this)}
+            onFromPress={this.onFromPress.bind(this)}
+            onToPress={this.onToPress.bind(this)}
             swapFromTo={this.swapFromTo.bind(this)}
             onChangeTransportationMode={this.onTransportationModeChange.bind(
               this
             )}
           />
         ) : (
-          <PlaceSearchBar mode={"float"} onFocus={this.onToFocus.bind(this)} />
+          <PlaceSearchBox mode={"float"} onPress={this.onToPress.bind(this)} />
         )}
         <Map />
       </View>

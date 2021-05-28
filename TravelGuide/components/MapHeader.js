@@ -14,8 +14,8 @@ class MapHeader extends Component {
     const {
       from,
       to,
-      onFromFocus,
-      onToFocus,
+      onFromPress,
+      onToPress,
       swapFromTo,
       transportationMode,
       onChangeTransportationMode,
@@ -30,8 +30,8 @@ class MapHeader extends Component {
         <Direction
           from={from}
           to={to}
-          onFromFocus={onFromFocus}
-          onToFocus={onToFocus}
+          onFromPress={onFromPress}
+          onToPress={onToPress}
           swapFromTo={swapFromTo}
         />
         <Transportation

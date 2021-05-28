@@ -21,6 +21,7 @@ class PlaceSearchBar extends Component {
           placeholder="목적지 검색"
           onChangeText={(text) => onChangeKeyword(text)}
           onFocus={onFocus}
+          autoFocus={true}
           value={keyword}
           style={styles.searchBar}
         />
