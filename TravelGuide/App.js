@@ -3,10 +3,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { LogBox } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import MapScreen from "./screens/MapScreen";
-import PlaceSearchScreen from "./screens/PlaceSearchScreen";
+
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+]);
 
 const MyTheme = {
   colors: {
@@ -23,21 +27,16 @@ const App = () => {
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
               if (route.name === "Map") {
-                iconName = "map";
+                return <Ionicons name={"map"} size={size} color={color} />;
               } else if (route.name === "Settings") {
-                iconName = "ios-list";
+                return <Ionicons name={"ios-list"} size={size} color={color} />;
               }
-
-              // You can return any component that you like here!
-              return <Ionicons name={iconName} size={size} color={color} />;
             },
           })}
         >
           <Tab.Screen name="Map" component={MapScreen} />
-          <Tab.Screen name="Settings" component={PlaceSearchScreen} />
+          {/* <Tab.Screen name="Settings" component={PlaceSearchScreen} /> */}
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

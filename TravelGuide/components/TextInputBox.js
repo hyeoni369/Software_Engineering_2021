@@ -8,7 +8,7 @@ class TextInputBox extends Component {
   }
 
   render() {
-    const { placeholder, value, onChange } = this.props;
+    const { placeholder, value, onChange, onFocus } = this.props;
 
     return (
       <TextInput
@@ -16,7 +16,7 @@ class TextInputBox extends Component {
         placeholder={placeholder ? placeholder : ""}
         value={value}
         onChangeText={(text) => onChange(text)}
-        onFocus={() => null}
+        onFocus={onFocus}
         style={styles.textInput}
       />
     );

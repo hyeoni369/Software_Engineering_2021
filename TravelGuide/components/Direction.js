@@ -10,7 +10,7 @@ class Direction extends Component {
   }
 
   render() {
-    const { from, to, swapFromTo, onFromChange, onToChange } = this.props;
+    const { from, to, swapFromTo, onFromFocus, onToFocus } = this.props;
 
     return (
       <View style={styles.container}>
@@ -24,13 +24,13 @@ class Direction extends Component {
         <View style={styles.directionBox}>
           <TextInputBox
             placeholder={"출발지 입력"}
-            value={from}
-            onChange={onFromChange}
+            value={from.name ? from.name : "내 위치"}
+            onFocus={onFromFocus}
           />
           <TextInputBox
             placeholder={"도착지 입력"}
-            value={to}
-            onChange={onToChange}
+            value={to.name}
+            onFocus={onToFocus}
           />
         </View>
       </View>

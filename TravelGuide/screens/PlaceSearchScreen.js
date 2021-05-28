@@ -9,12 +9,16 @@ import SearchedPlace from "../components/SearchedPlace";
 class PlaceSearchScreen extends Component {
   constructor(props) {
     super(props);
+
+    const { setPlace } = props.route.params;
+
     this.state = {
       keyword: "",
       searchedPlaces: [],
       nextPageToken: "",
     };
     this.placeAPI = new PlaceAPI();
+    this.setPlace = setPlace;
   }
 
   async onChangeKeyword(keyword) {
@@ -68,6 +72,11 @@ class PlaceSearchScreen extends Component {
     });
   }
 
+  onPlaceCardSelected(place) {
+    this.setPlace(place);
+    this.props.navigation.goBack();
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -77,7 +86,11 @@ class PlaceSearchScreen extends Component {
         />
         <ScrollView>
           {this.state.searchedPlaces.map((searchedPlace, index) => (
-            <SearchedPlace {...searchedPlace} key={index} />
+            <SearchedPlace
+              {...searchedPlace}
+              onPlaceCardSelected={this.onPlaceCardSelected.bind(this)}
+              key={index}
+            />
           ))}
         </ScrollView>
       </SafeAreaView>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 
 import Direction from "./Direction";
 import Transportation from "./Transportation";
@@ -13,15 +13,15 @@ class MapHeader extends Component {
     const {
       from,
       to,
-      onFromChange,
-      onToChange,
+      onFromFocus,
+      onToFocus,
       swapFromTo,
       transportationMode,
       onChangeTransportationMode,
     } = this.props;
 
     return (
-      <View
+      <SafeAreaView
         style={{
           ...styles.container,
         }}
@@ -29,15 +29,15 @@ class MapHeader extends Component {
         <Direction
           from={from}
           to={to}
-          onFromChange={onFromChange}
-          onToChange={onToChange}
+          onFromFocus={onFromFocus}
+          onToFocus={onToFocus}
           swapFromTo={swapFromTo}
         />
         <Transportation
           transportationMode={transportationMode}
           onChangeTransportationMode={onChangeTransportationMode}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

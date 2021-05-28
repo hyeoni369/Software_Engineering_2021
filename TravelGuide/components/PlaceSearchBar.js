@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { Searchbar } from "react-native-paper";
 
 class PlaceSearchBar extends Component {
@@ -8,17 +8,22 @@ class PlaceSearchBar extends Component {
   }
 
   render() {
-    const { onChangeKeyword, keyword } = this.props;
+    const { onChangeKeyword, onFocus, keyword, mode } = this.props;
+    const containerStyle =
+      mode != "float"
+        ? styles.container
+        : [styles.container, styles.floatOption];
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={containerStyle}>
         <Searchbar
-          placeholder="Search"
+          placeholder="목적지 검색"
           onChangeText={(text) => onChangeKeyword(text)}
+          onFocus={onFocus}
           value={keyword}
           style={styles.searchBar}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -28,6 +33,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 15,
+  },
+  floatOption: {
+    position: "absolute",
+    top: 45,
+    zIndex: 1,
+    width: "90%",
   },
   searchBar: {
     borderWidth: 1,

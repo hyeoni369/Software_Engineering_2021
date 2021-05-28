@@ -10,7 +10,8 @@ class Raiting extends Component {
     const { rating, userRatingsTotal } = this.props;
     return (
       <Text style={{ marginRight: 15 }}>
-        ✫ {rating} / 5.0 ({userRatingsTotal})
+        <Text style={{ color: "#B500FF" }}>★</Text> {rating} / 5.0 (
+        {userRatingsTotal})
       </Text>
     );
   }

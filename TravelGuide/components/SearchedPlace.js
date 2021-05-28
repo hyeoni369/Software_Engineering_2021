@@ -11,14 +11,21 @@ class SearchedPlace extends Component {
   }
 
   render() {
-    const { formattedAddress, name, rating, photos, userRatingsTotal } =
-      this.props;
+    const {
+      formattedAddress,
+      name,
+      rating,
+      photos,
+      userRatingsTotal,
+      onPlaceCardSelected,
+    } = this.props;
+
     const photo = photos[0]
       ? PlaceAPI.getPhotoURL(photos[0])
       : "https://picsum.photos/400";
 
     return (
-      <Card style={styles.card}>
+      <Card style={styles.card} onPress={() => onPlaceCardSelected(this.props)}>
         <Card.Cover source={{ uri: photo }} />
         <Card.Title
           title={name}
@@ -34,7 +41,7 @@ class SearchedPlace extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    marginVertical: 5,
+    marginVertical: 8,
     marginHorizontal: 15,
   },
 });

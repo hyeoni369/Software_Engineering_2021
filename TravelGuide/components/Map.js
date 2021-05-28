@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import MapView from "react-native-maps";
-import * as Location from "expo-location";
+
+import Location from "./location";
 
 class Map extends Component {
   constructor(props) {
@@ -22,24 +23,12 @@ class Map extends Component {
   };
 
   _getLocationAsync = async () => {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      this.setState({
-        locationResult: "Permission to access location was denied",
-      });
-    } else {
-      this.setState({ hasLocationPermissions: true });
-    }
-
-    let location = await Location.getCurrentPositionAsync({});
-    this.setState({ locationResult: JSON.stringify(location) });
-
+    const currentLocation = await Location.getCurrentLocationAsync();
     this.setState({
       mapRegion: {
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitudeDelta: 0.007,
+        longitudeDelta: 0.007,
+        ...currentLocation,
       },
     });
   };
@@ -48,6 +37,9 @@ class Map extends Component {
     return (
       <View style={styles.container}>
         <MapView
+          // provider={"google"}
+          showsUserLocation={true}
+          loadingEnabled={true}
           style={styles.map}
           region={this.state.mapRegion}
           onRegionChange={this._handleMapRegionChange}
