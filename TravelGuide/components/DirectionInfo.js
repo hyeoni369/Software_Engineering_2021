@@ -1,60 +1,71 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { Component } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import BottomDrawer from "react-native-bottom-drawer-view";
+import { BottomTabBarHeightContext } from "@react-navigation/bottom-tabs";
 
-import DirectionAPI from "../components/directionAPI";
 import Waypoint from "./Waypoint";
-
-const TAB_BAR_HEIGHT = 100;
+import DirectionSummary from "./DirectionSummary";
 
 class DirectionInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      waypoints: null,
-    };
-    this.directionApi = new DirectionAPI();
-    console.log(props.origin, props.destination);
-  }
-
-  async findDirection(origin, destination) {
-    const directionResult = await this.directionApi.getDirection(
-      origin,
-      destination
-    );
-    this.setState({ waypoints: this.directionApi.parse(directionResult) });
-    console.log(this.directionApi.parse(directionResult));
   }
 
   render() {
-    this.findDirection();
+    const iconSize = 30;
+    const containerHeight = 500;
+    const { direction } = this.props;
+
+    if (!direction?.arrival_time) return null;
+
     return (
-      <BottomDrawer
-        containerHeight={500}
-        borderRadius={50}
-        downDisplay={485}
-        startUp={false}
-        offset={TAB_BAR_HEIGHT}
-      >
-        {
-          <View style={styles.container}>
-            <Ionicons name={"reorder-three"} size={30} />
-            <ScrollView>
-              <Waypoint />
-            </ScrollView>
-          </View>
-        }
-      </BottomDrawer>
+      <BottomTabBarHeightContext.Consumer>
+        {(tabBarHeight) => (
+          <BottomDrawer
+            containerHeight={containerHeight}
+            borderRadius={50}
+            downDisplay={containerHeight - iconSize}
+            startUp={false}
+            offset={tabBarHeight + 10}
+          >
+            {
+              <View style={styles.container}>
+                <Ionicons name={"reorder-three"} size={iconSize} />
+                <ScrollView style={styles.scrollViewContainer}>
+                  <TouchableOpacity
+                    activeOpacity={1}
+                    style={[
+                      styles.scrollViewContainer,
+                      { marginBottom: tabBarHeight },
+                    ]}
+                  >
+                    <DirectionSummary
+                      arrival_time={direction.arrival_time}
+                      departure_time={direction.departure_time}
+                      distance={direction.distance}
+                      duration={direction.duration}
+                    />
+                    {direction.instructions.map((waypoint, index) => (
+                      <Waypoint {...waypoint} key={index} />
+                    ))}
+                  </TouchableOpacity>
+                </ScrollView>
+              </View>
+            }
+          </BottomDrawer>
+        )}
+      </BottomTabBarHeightContext.Consumer>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    width: "100%",
+  },
+  scrollViewContainer: {
     width: "100%",
   },
 });

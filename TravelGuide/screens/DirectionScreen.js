@@ -6,6 +6,7 @@ import MapHeader from "../components/MapHeader";
 import Location from "../components/location";
 import PlaceSearchBox from "../components/PlaceSearchBox";
 import DirectionInfo from "../components/DirectionInfo";
+import DirectionAPI from "../components/directionAPI";
 
 class DirectionScreen extends Component {
   constructor(props) {
@@ -17,8 +18,15 @@ class DirectionScreen extends Component {
       },
       to: null,
       transportationMode: "bus",
+      direction: {},
     };
+    this.directionApi = new DirectionAPI();
     this._getLocationAsync();
+  }
+
+  async findDirection(origin, destination) {
+    const direction = await this.directionApi.getDirection(origin, destination);
+    this.setState({ direction: this.directionApi.parse(direction) });
   }
 
   _getLocationAsync = async () => {
@@ -33,10 +41,12 @@ class DirectionScreen extends Component {
 
   setFrom(from) {
     this.setState({ from });
+    this.findDirection(from, this.state.to);
   }
 
   setTo(to) {
     this.setState({ to });
+    this.findDirection(this.state.from, to);
   }
 
   onFromPress() {
@@ -60,7 +70,7 @@ class DirectionScreen extends Component {
 
   onTransportationModeChange(transportationMode) {
     this.setState({ transportationMode });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {
@@ -95,7 +105,7 @@ class DirectionScreen extends Component {
           destination={destination}
           mode={this.state.transportationMode}
         />
-        <DirectionInfo origin={origin} destination={destination} />
+        <DirectionInfo direction={this.state.direction} />
       </View>
     );
   }

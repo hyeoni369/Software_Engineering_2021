@@ -58,6 +58,7 @@ class DirectionAPI {
           distance: distance.text,
           duration: duration.text,
           instructions: `${line.name} ${line.short_name}`,
+          color: line.color,
           arrival: arrival_stop.name,
           departure: departure_stop.name,
         };

@@ -24,8 +24,8 @@ class Map extends Component {
     const currentLocation = await Location.getCurrentLocationAsync();
     this.setState({
       mapRegion: {
-        latitudeDelta: 0.007,
-        longitudeDelta: 0.007,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
         ...currentLocation,
       },
     });
@@ -52,6 +52,12 @@ class Map extends Component {
       <View style={styles.container}>
         <MapView
           // provider={"google"}
+          initialRegion={{
+            latitude: 37.50465079401713,
+            longitude: 126.95738252505444,
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05,
+          }}
           showsUserLocation={true}
           loadingEnabled={true}
           style={styles.map}
