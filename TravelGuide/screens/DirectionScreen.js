@@ -60,9 +60,19 @@ class DirectionScreen extends Component {
 
   onTransportationModeChange(transportationMode) {
     this.setState({ transportationMode });
+    console.log(this.state);
   }
 
   render() {
+    const origin = {
+      latitude: this.state.from?.latitude,
+      longitude: this.state.from?.longitude,
+    };
+    const destination = {
+      latitude: this.state.to?.latitude,
+      longitude: this.state.to?.longitude,
+    };
+
     return (
       <View style={styles.container}>
         {this.state.from?.name !== "내 위치" || this.state.to ? (
@@ -80,7 +90,11 @@ class DirectionScreen extends Component {
         ) : (
           <PlaceSearchBox mode={"float"} onPress={this.onToPress.bind(this)} />
         )}
-        <Map />
+        <Map
+          origin={origin}
+          destination={destination}
+          mode={this.state.transportationMode}
+        />
       </View>
     );
   }

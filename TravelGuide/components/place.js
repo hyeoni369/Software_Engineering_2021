@@ -1,8 +1,8 @@
 class Place {
   constructor(
     formatted_address,
-    lat,
-    lng,
+    latitude,
+    longitude,
     icon,
     name,
     rating,
@@ -10,8 +10,8 @@ class Place {
     user_ratings_total
   ) {
     this.formattedAddress = formatted_address;
-    this.lat = lat;
-    this.lng = lng;
+    this.latitude = latitude;
+    this.longitude = longitude;
     this.icon = icon;
     this.name = name;
     this.rating = rating;
