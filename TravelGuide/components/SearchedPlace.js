@@ -25,7 +25,10 @@ class SearchedPlace extends Component {
       : "https://picsum.photos/400";
 
     return (
-      <Card style={styles.card} onPress={() => onPlaceCardSelected(this.props)}>
+      <Card
+        style={[styles.card, styles.shadow]}
+        onPress={() => onPlaceCardSelected(this.props)}
+      >
         <Card.Cover source={{ uri: photo }} />
         <Card.Title
           title={name}
@@ -43,6 +46,16 @@ const styles = StyleSheet.create({
   card: {
     marginVertical: 8,
     marginHorizontal: 15,
+  },
+  shadow: {
+    shadowColor: "#B500FF",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.35,
+    shadowRadius: 4.0,
+    elevation: 5,
   },
 });
 
