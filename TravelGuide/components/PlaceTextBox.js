@@ -21,21 +21,20 @@ class PlaceTextBox extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
     borderColor: "#B500FF",
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 20,
     margin: 3,
-    paddingVertical: 18,
   },
   icon: {
     marginHorizontal: 10,
   },
   text: {
     fontSize: 16,
+    marginVertical: 7,
   },
 });
 

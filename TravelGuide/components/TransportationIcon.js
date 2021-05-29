@@ -1,6 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 class TransportationIcon extends Component {
   constructor(props) {
@@ -16,18 +16,21 @@ class TransportationIcon extends Component {
     } = this.props;
 
     return (
-      <Ionicons
-        name={transportationMode}
-        size={icon_size}
-        color={transportationMode === currentMode ? "#ffffff" : "#000000"}
-        onPress={() => onChangeTransportationMode(transportationMode)}
+      <View
         style={[
           styles.roundButton,
           transportationMode === currentMode
             ? styles.selectedButton
             : styles.notSelectedButton,
         ]}
-      />
+      >
+        <Ionicons
+          name={transportationMode}
+          size={icon_size}
+          color={transportationMode === currentMode ? "#ffffff" : "#000000"}
+          onPress={() => onChangeTransportationMode(transportationMode)}
+        />
+      </View>
     );
   }
 }
