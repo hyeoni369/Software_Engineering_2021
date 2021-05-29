@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
-import Map from "../components/Map";
 
+import Map from "../components/Map";
 import MapHeader from "../components/MapHeader";
 import Location from "../components/location";
 import PlaceSearchBox from "../components/PlaceSearchBox";
+import DirectionInfo from "../components/DirectionInfo";
 
 class DirectionScreen extends Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class DirectionScreen extends Component {
       to: null,
       transportationMode: "bus",
     };
-
     this._getLocationAsync();
   }
 
@@ -95,6 +95,7 @@ class DirectionScreen extends Component {
           destination={destination}
           mode={this.state.transportationMode}
         />
+        <DirectionInfo origin={origin} destination={destination} />
       </View>
     );
   }

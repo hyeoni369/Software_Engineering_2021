@@ -20,7 +20,7 @@ class Map extends Component {
     this._getLocationAsync();
   }
 
-  _getLocationAsync = async () => {
+  async _getLocationAsync() {
     const currentLocation = await Location.getCurrentLocationAsync();
     this.setState({
       mapRegion: {
@@ -29,7 +29,7 @@ class Map extends Component {
         ...currentLocation,
       },
     });
-  };
+  }
 
   convertMode(mode) {
     if (mode === "walk") {
