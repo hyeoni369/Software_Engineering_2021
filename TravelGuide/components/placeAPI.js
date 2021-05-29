@@ -1,11 +1,12 @@
 import axios from "axios";
 
+import { GOOGLE_API_KEY } from "../GOOGLE_API_KEY";
+
 class PlaceAPI {
   static IMAGE_SIZE = 400;
 
-  static API_KEY = "AIzaSyCWY4qFf2hFomtUDwJyzaCd5-DXc0pUTs4";
-  static PLACE_SEARCH_API_URL = `https://maps.googleapis.com/maps/api/place/textsearch/json?language=ko&key=${this.API_KEY}&query=`;
-  static PHOTO_API_URL = `https://maps.googleapis.com/maps/api/place/photo?language=ko&maxwidth=${this.IMAGE_SIZE}&key=${this.API_KEY}&photoreference=`;
+  static PLACE_SEARCH_API_URL = `https://maps.googleapis.com/maps/api/place/textsearch/json?language=ko&key=${GOOGLE_API_KEY}&query=`;
+  static PHOTO_API_URL = `https://maps.googleapis.com/maps/api/place/photo?language=ko&maxwidth=${this.IMAGE_SIZE}&key=${GOOGLE_API_KEY}&photoreference=`;
 
   async searchPlaces(keyword) {
     // 검색 URL
