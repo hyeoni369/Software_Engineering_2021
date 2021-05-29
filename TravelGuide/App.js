@@ -25,6 +25,11 @@ const App = () => {
     <SafeAreaProvider>
       <NavigationContainer theme={MyTheme} style={styles.container}>
         <Tab.Navigator
+          tabBarOptions={{
+            style: {
+              marginBottom: 3,
+            },
+          }}
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               if (route.name === "Map") {
