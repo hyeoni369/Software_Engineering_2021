@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
     paddingRight: 5,
   },
   swapButton: {
-    marginRight: 3,
+    marginRight: 6,
   },
   directionBox: {
-    width: "87%",
+    width: "86%",
   },
 });
 
