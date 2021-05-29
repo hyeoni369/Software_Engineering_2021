@@ -18,10 +18,6 @@ class Map extends Component {
     this._getLocationAsync();
   }
 
-  _handleMapRegionChange = (mapRegion) => {
-    this.setState({ mapRegion });
-  };
-
   _getLocationAsync = async () => {
     const currentLocation = await Location.getCurrentLocationAsync();
     this.setState({
@@ -37,12 +33,11 @@ class Map extends Component {
     return (
       <View style={styles.container}>
         <MapView
-          // provider={"google"}
+          provider={"google"}
           showsUserLocation={true}
           loadingEnabled={true}
           style={styles.map}
           region={this.state.mapRegion}
-          onRegionChange={this._handleMapRegionChange}
         />
       </View>
     );
