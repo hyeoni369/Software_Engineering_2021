@@ -118,4 +118,4 @@ idea/
 **/._.DS_Store
 
 # API_KEY
-**/GOOGLE_API_KEY.js
+TravelGuide/GOOGLE_API_KEY.js
