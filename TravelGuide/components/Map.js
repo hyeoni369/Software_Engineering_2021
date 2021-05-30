@@ -10,7 +10,7 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mapRegion: null,
+      mapRegion: this.initialRegion,
       hasLocationPermissions: false,
       locationResult: null,
     };
@@ -27,8 +27,8 @@ class Map extends Component {
     ) {
       this.setState({
         mapRegion: {
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
           ...this.props.origin,
         },
       });
@@ -39,8 +39,8 @@ class Map extends Component {
     const currentLocation = await Location.getCurrentLocationAsync();
     this.setState({
       mapRegion: {
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
         ...currentLocation,
       },
     });
@@ -59,6 +59,13 @@ class Map extends Component {
     return "TRANSIT";
   }
 
+  initialRegion = {
+    latitude: 37.50465079401713,
+    longitude: 126.95738252505444,
+    latitudeDelta: 0.05,
+    longitudeDelta: 0.05,
+  };
+
   render() {
     const { origin, destination, mode } = this.props;
     const convertedMode = this.convertMode(mode);
@@ -67,12 +74,7 @@ class Map extends Component {
       <View style={styles.container}>
         <MapView
           // provider={"google"}
-          initialRegion={{
-            latitude: 37.50465079401713,
-            longitude: 126.95738252505444,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05,
-          }}
+          initialRegion={this.initialRegion}
           showsUserLocation={true}
           loadingEnabled={true}
           style={styles.map}

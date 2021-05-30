@@ -27,7 +27,7 @@ class DirectionInfo extends Component {
             borderRadius={50}
             downDisplay={containerHeight - iconSize}
             startUp={false}
-            offset={tabBarHeight + 10}
+            offset={tabBarHeight}
           >
             {
               <View style={styles.container}>
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     width: "100%",
+    paddingBottom: 20,
   },
   scrollViewContainer: {
     width: "100%",
