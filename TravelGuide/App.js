@@ -14,7 +14,7 @@ LogBox.ignoreLogs([
 
 const MyTheme = {
   colors: {
-    primary: "#9200cc",
+    primary: "#ffffff",
   },
 };
 
@@ -27,20 +27,21 @@ const App = () => {
         <Tab.Navigator
           tabBarOptions={{
             style: {
-              marginBottom: 3,
+              paddingTop: 5,
+              backgroundColor: "#41246b",
             },
           }}
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              if (route.name === "Map") {
-                return <Ionicons name={"map"} size={size} color={color} />;
-              } else if (route.name === "Settings") {
-                return <Ionicons name={"ios-list"} size={size} color={color} />;
-              }
-            },
-          })}
         >
-          <Tab.Screen name="Map" component={MapScreen} />
+          <Tab.Screen
+            name="Map"
+            component={MapScreen}
+            options={{
+              tabBarLabel: "Home",
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="map" color={color} size={26} />
+              ),
+            }}
+          />
           {/* <Tab.Screen name="Settings" component={PlaceSearchScreen} /> */}
         </Tab.Navigator>
       </NavigationContainer>

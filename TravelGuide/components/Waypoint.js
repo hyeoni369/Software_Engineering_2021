@@ -14,7 +14,16 @@ class Waypoint extends Component {
 
     return (
       <View style={styles.container}>
-        <Card style={[styles.card, styles.shadow, { borderColor }]}>
+        <Card
+          style={[
+            styles.card,
+            styles.shadow,
+            {
+              shadowColor: borderColor,
+            },
+            { borderColor },
+          ]}
+        >
           <Card.Title title={`${duration} (${distance})`} />
           <Card.Content style={styles.content}>
             <Paragraph>{instructions}</Paragraph>
@@ -40,13 +49,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   shadow: {
-    shadowColor: "#000000",
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 0,
     },
-    shadowOpacity: 5.5,
-    shadowRadius: 4.0,
+    shadowOpacity: 0.3,
+    shadowRadius: 3.0,
     elevation: 5,
   },
   content: { fontSize: 17 },
