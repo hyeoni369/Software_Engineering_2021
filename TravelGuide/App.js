@@ -8,6 +8,7 @@ import * as Device from "expo-device";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import MapScreen from "./screens/MapScreen";
+import RecommendScreen from "./screens/RecommendScreen";
 
 LogBox.ignoreLogs([
   "Non-serializable values were found in the navigation state",
@@ -36,9 +37,19 @@ const App = () => {
             name="Map"
             component={MapScreen}
             options={{
-              tabBarLabel: "Home",
+              tabBarLabel: "길찾기",
               tabBarIcon: ({ color }) => (
                 <Ionicons name="map" color={color} size={23} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Recommend"
+            component={RecommendScreen}
+            options={{
+              tabBarLabel: "추천",
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="location" color={color} size={23} />
               ),
             }}
           />
