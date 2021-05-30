@@ -20,6 +20,21 @@ class Map extends Component {
     this._getLocationAsync();
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.origin?.latitude !== this.props.origin?.latitude ||
+      prevProps.destination?.latitude !== this.props.destination?.latitude
+    ) {
+      this.setState({
+        mapRegion: {
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+          ...this.props.origin,
+        },
+      });
+    }
+  }
+
   async _getLocationAsync() {
     const currentLocation = await Location.getCurrentLocationAsync();
     this.setState({

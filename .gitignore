@@ -116,3 +116,6 @@ idea/
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
+
+# API_KEY
+**/GOOGLE_API_KEY.js
