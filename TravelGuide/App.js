@@ -27,7 +27,7 @@ const App = () => {
         <Tab.Navigator
           tabBarOptions={{
             style: {
-              paddingTop: 5,
+              paddingBottom: 5,
               backgroundColor: "#41246b",
             },
           }}
@@ -38,7 +38,7 @@ const App = () => {
             options={{
               tabBarLabel: "Home",
               tabBarIcon: ({ color }) => (
-                <Ionicons name="map" color={color} size={26} />
+                <Ionicons name="map" color={color} size={23} />
               ),
             }}
           />
