@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { LogBox } from "react-native";
+import * as Device from "expo-device";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import MapScreen from "./screens/MapScreen";
@@ -27,7 +28,6 @@ const App = () => {
         <Tab.Navigator
           tabBarOptions={{
             style: {
-              paddingBottom: 5,
               backgroundColor: "#41246b",
             },
           }}
