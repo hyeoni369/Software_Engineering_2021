@@ -11,12 +11,14 @@ class Waypoint extends Component {
       this.props;
 
     const borderColor = color ? color : "#B500FF";
+    const borderStyle = color ? "solid" : "dashed";
 
     return (
       <View style={styles.container}>
         <Card
           style={[
             styles.card,
+            { borderStyle },
             styles.shadow,
             {
               shadowColor: borderColor,
