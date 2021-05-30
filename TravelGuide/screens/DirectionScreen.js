@@ -24,6 +24,15 @@ class DirectionScreen extends Component {
     this._getLocationAsync();
   }
 
+  componentDidUpdate(_prevProps, prevState) {
+    if (
+      prevState?.from !== this.state?.from ||
+      prevState?.to !== this.state?.to
+    ) {
+      this.findDirection(this.state.from, this.state.to);
+    }
+  }
+
   async findDirection(origin, destination) {
     const direction = await this.directionApi.getDirection(origin, destination);
     this.setState({ direction: this.directionApi.parse(direction) });
@@ -41,12 +50,10 @@ class DirectionScreen extends Component {
 
   setFrom(from) {
     this.setState({ from });
-    this.findDirection(from, this.state.to);
   }
 
   setTo(to) {
     this.setState({ to });
-    this.findDirection(this.state.from, to);
   }
 
   onFromPress() {
@@ -62,7 +69,6 @@ class DirectionScreen extends Component {
   }
 
   swapFromTo() {
-    this.findDirection(this.state.to, this.state.from);
     this.setState({
       from: this.state.to,
       to: this.state.from,
@@ -71,7 +77,6 @@ class DirectionScreen extends Component {
 
   onTransportationModeChange(transportationMode) {
     this.setState({ transportationMode });
-    // console.log(this.state);
   }
 
   render() {
