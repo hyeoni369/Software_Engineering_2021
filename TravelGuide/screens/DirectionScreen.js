@@ -62,6 +62,7 @@ class DirectionScreen extends Component {
   }
 
   swapFromTo() {
+    this.findDirection(this.state.to, this.state.from);
     this.setState({
       from: this.state.to,
       to: this.state.from,
